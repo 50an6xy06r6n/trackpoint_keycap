@@ -22,9 +22,10 @@ module key_cutout(translation) {
 
 module tunnel_wall() {
     cylinder(
-        8.5,
+        tunnel_wall_height,
         d1=tunnel_d1 + wall_thickness*2,
-        d2=tunnel_d2 + wall_thickness*2,
+        // normalized to match draft angle
+        d2=tunnel_d2 * tunnel_wall_height / tunnel_height + wall_thickness*2,
         $fn=360,
     );
 }
@@ -32,7 +33,7 @@ module tunnel_wall() {
 module tunnel_cutout() {
     translate([0,0,-0.1])
     cylinder(
-        10,
+        tunnel_height,
         d1=tunnel_d1,
         d2=tunnel_d2,
         $fn=360,
